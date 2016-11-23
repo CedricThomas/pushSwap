@@ -5,16 +5,17 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Mon Nov 21 14:48:10 2016 Cédric Thomas
-** Last update Mon Nov 21 19:30:31 2016 Cédric Thomas
+** Last update Wed Nov 23 22:56:16 2016 Cédric Thomas
 */
 #include <unistd.h>
 #include <stdlib.h>
 #include "my.h"
 #include "pushswap.h"
 
-void            printblank(t_number **lla, t_number **llb, int bool)
+void            printblank(t_number **lla, t_number **llb, int bool, char *mod)
 {
-  if ((!is_sorted(lla) || *llb != NULL) && bool == 0)
+  if ((my_strcmp(mod, "pa") != 0 ||
+       *llb != NULL) && bool == 0)
     write(1, " ", 1);
   if (bool)
     {
@@ -30,7 +31,7 @@ int	swap(t_number **ll)
 {
   int	tmp;
 
-  if (my_list_size(ll) > 1)
+  if (*ll != NULL && (*ll)->next != *ll)
     {
       tmp = (*ll)->data;
       (*ll)->data = (*ll)->next->data;
@@ -40,7 +41,7 @@ int	swap(t_number **ll)
 
 int	rotate_left(t_number **ll)
 {
-  if (my_list_size(ll) > 1)
+  if (*ll != NULL && (*ll)->next != *ll)
     {
       *ll = (*ll)->prev;
     }
@@ -48,7 +49,7 @@ int	rotate_left(t_number **ll)
 
 int	rotate_right(t_number **ll)
 {
-  if (my_list_size(ll) > 1)
+  if (*ll != NULL && (*ll)->next != *ll)
     {
       *ll = (*ll)->next;
     }
@@ -56,13 +57,27 @@ int	rotate_right(t_number **ll)
 
 int		push(t_number **lla, t_number **llb)
 {
-  int		temp;
+  t_number	*temp;
 
-  if (my_list_size(lla) >= 1)
+  temp = *lla;
+  if (*lla == NULL)
+    return (0);
+  *lla = (*lla)->next;
+  if (*lla == temp)
+    *lla = NULL;
+  temp->next->prev = temp->prev;
+  temp->prev->next = temp->next;
+  if (*llb == NULL)
     {
-      temp = (*lla)->data;
-      my_del_list(lla, *lla);
-      my_put_list(llb, temp);
-      *llb = (*llb)->prev;
+      temp->next = temp;
+      temp->prev = temp;
+      *llb = temp;
+      return (0);
     }
+  temp->next = *llb;
+  temp->prev = (*llb)->prev;
+  temp->prev->next = temp;
+  temp->next->prev = temp;
+  *llb = temp;
+  return (0);
 }

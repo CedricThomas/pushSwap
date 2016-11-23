@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Tue Nov  8 13:03:03 2016 Cédric Thomas
-** Last update Mon Nov 21 19:30:17 2016 Cédric Thomas
+** Last update Wed Nov 23 22:43:05 2016 Cédric Thomas
 */
 
 #ifndef PUSHSWAP_H_
@@ -14,6 +14,8 @@
 typedef struct		s_number
 {
   int			data;
+  char			bool;
+  int			tag;
   struct s_number	*next;
   struct s_number	*prev;
 }			t_number;
@@ -34,7 +36,7 @@ int	swap(t_number **ll);
 int	rotate_left(t_number **ll);
 int	rotate_right(t_number **ll);
 int	push(t_number **lla, t_number **llb);
-void	printblank(t_number **lla, t_number **llb, int bool);
+void	printblank(t_number **lla, t_number **llb, int bool, char *mod);
 
 /*
 **sort_fct.c
