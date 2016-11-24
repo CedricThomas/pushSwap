@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Mon Nov 21 16:38:49 2016 Cédric Thomas
-** Last update Wed Nov 23 23:01:41 2016 Cédric Thomas
+** Last update Thu Nov 24 09:29:35 2016 Cédric Thomas
 */
 #include <stdlib.h>
 #include "my.h"
@@ -56,9 +56,9 @@ static void             getfirst(t_number **lla,
   while (i < rotate)
     {
       if (min > size / 2)
-	  rr(lla, llb, 1, bool);
+	rr(lla, llb, 1, bool);
       else
-	  r(lla, llb, 1, bool);
+	r(lla, llb, 1, bool);
       i += 1;
     }
 }

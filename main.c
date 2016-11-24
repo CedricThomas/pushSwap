@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Tue Nov  8 13:18:31 2016 Cédric Thomas
-** Last update Wed Nov 23 22:57:42 2016 Cédric Thomas
+** Last update Thu Nov 24 09:19:49 2016 Cédric Thomas
 */
 #include <stdlib.h>
 #include "my.h"
@@ -13,8 +13,9 @@
 
 static int	my_pushswap(t_number *lla, int bool)
 {
-  sort(&lla, bool);
-  if (!bool)
+  if (lla != NULL)
+    sort(&lla, bool);
+  if (!bool || lla == NULL)
     my_putchar('\n');
   return (0);
 }
@@ -44,6 +45,6 @@ int		main(int ac, char **av)
     }
   my_pushswap(lla, bool);
   while (lla != NULL)
-      my_del_list(&lla, lla);
+    my_del_list(&lla, lla);
   return (0);
 }
