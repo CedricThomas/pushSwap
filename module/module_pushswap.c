@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Mon Nov 21 14:48:10 2016 Cédric Thomas
-** Last update Wed Nov 23 22:56:16 2016 Cédric Thomas
+** Last update Thu Nov 24 09:42:38 2016 Cédric Thomas
 */
 #include <unistd.h>
 #include <stdlib.h>
@@ -14,8 +14,8 @@
 
 void            printblank(t_number **lla, t_number **llb, int bool, char *mod)
 {
-  if ((my_strcmp(mod, "pa") != 0 ||
-       *llb != NULL) && bool == 0)
+  if ((my_strcmp(mod, "pa") != 0 || *llb != NULL ||
+       *llb != NULL && my_strcmp(mod, "sa") == 0) && bool == 0)
     write(1, " ", 1);
   if (bool)
     {
