@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Mon Nov 21 14:48:10 2016 Cédric Thomas
-** Last update Thu Nov 24 09:42:38 2016 Cédric Thomas
+** Last update Fri Nov 25 13:03:04 2016 Cédric Thomas
 */
 #include <unistd.h>
 #include <stdlib.h>
@@ -14,16 +14,14 @@
 
 void            printblank(t_number **lla, t_number **llb, int bool, char *mod)
 {
-  if ((my_strcmp(mod, "pa") != 0 || *llb != NULL ||
-       *llb != NULL && my_strcmp(mod, "sa") == 0) && bool == 0)
-    write(1, " ", 1);
   if (bool)
     {
-      my_putstr("\nla :");
+      my_putstr(mod);
+      write(1, "\nla :", 5);
       my_show_list(lla);
-      my_putstr("\nlb :");
+      write(1, "\nlb :", 5);
       my_show_list(llb);
-      my_putchar('\n');
+      write(1, "\n", 1);
     }
 }
 

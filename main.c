@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Tue Nov  8 13:18:31 2016 Cédric Thomas
-** Last update Thu Nov 24 09:19:49 2016 Cédric Thomas
+** Last update Thu Nov 24 10:51:28 2016 Cédric Thomas
 */
 #include <stdlib.h>
 #include "my.h"
@@ -13,7 +13,7 @@
 
 static int	my_pushswap(t_number *lla, int bool)
 {
-  if (lla != NULL)
+  if (lla != NULL && !is_sorted(&lla))
     sort(&lla, bool);
   if (!bool || lla == NULL)
     my_putchar('\n');

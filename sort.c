@@ -5,11 +5,31 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Mon Nov 21 16:38:49 2016 Cédric Thomas
-** Last update Thu Nov 24 09:29:35 2016 Cédric Thomas
+** Last update Fri Nov 25 14:19:48 2016 Cédric Thomas
 */
+#include <unistd.h>
 #include <stdlib.h>
 #include "my.h"
 #include "pushswap.h"
+
+void    update_buff(t_buffer *bf, char *mod, int forced)
+{
+  int	i;
+
+  i = 0;
+  while (mod[i] && !forced)
+    {
+      bf->buff[bf->buff_size] = mod[i];
+      bf->buff_size += 1;
+      i += 1;
+    }
+  if (bf->buff_size > BUFF_SIZE - 6 || forced)
+    {
+      bf->to_disp = my_strlncat(bf->to_disp, bf->buff, bf->disp_size, bf->buff_size);
+      bf->disp_size += bf->buff_size;
+      bf->buff_size = 0;
+    } 
+}
 
 int             getmin(t_number **lla)
 {
@@ -40,7 +60,7 @@ int             getmin(t_number **lla)
 }
 
 static void             getfirst(t_number **lla,
-				 t_number **llb, int bool, int size)
+				 t_number **llb, int bool, t_buffer *buffer)
 {
   int   min;
   int   value;
@@ -49,16 +69,16 @@ static void             getfirst(t_number **lla,
 
   min = getmin(lla);
   i = 0;
-  if (min > size / 2)
-    rotate = size - min;
+  if (min > buffer->list_size / 2)
+    rotate = buffer->list_size - min;
   else
     rotate = min;
   while (i < rotate)
     {
-      if (min > size / 2)
-	rr(lla, llb, 1, bool);
+      if (min > buffer->list_size / 2)
+	rra(lla, llb, bool, buffer);
       else
-	r(lla, llb, 1, bool);
+	ra(lla, llb, bool, buffer);
       i += 1;
     }
 }
@@ -67,21 +87,27 @@ int		sort(t_number **lla, int bool)
 {
   int		i;
   t_number	*llb;
-  int		size;
+  t_buffer	buffer;
 
   llb = NULL;
-  size = my_list_size(lla);
+  buffer.list_size = my_list_size(lla);
+  buffer.to_disp = NULL;
+  buffer.disp_size = 0;
+  buffer.buff_size = 0;
   while ((*lla)->next->next != *lla)
     {
       i = 0;
       if ((*lla)->data > (*lla)->next->data)
-  	s(lla, &llb, 1, bool);
-      getfirst(lla, &llb, bool, size);
-      p(lla, &llb, 1, bool);
-      size -= 1;
+  	sa(lla, &llb, bool, &buffer);
+      getfirst(lla, &llb, bool, &buffer);
+      pb(lla, &llb, bool, &buffer);
+      buffer.list_size -= 1;
     }
   if ((*lla)->next->data < (*lla)->data)
-    s(lla, &llb, 1, bool);
+    sa(lla, &llb, bool, &buffer);
   while (llb != NULL)
-    p(lla, &llb, 2, bool);
+    pa(lla, &llb, bool, &buffer);
+  update_buff(&buffer, "test", 1);
+  write(1, buffer.to_disp, buffer.disp_size - 1);
+  free(buffer.to_disp);
 }
