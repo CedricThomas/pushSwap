@@ -5,13 +5,15 @@
 ## Login   <cedric@epitech.net>
 ## 
 ## Started on  Sat Oct 22 10:37:32 2016 Cédric Thomas
-## Last update Fri Nov 25 14:08:50 2016 Cédric Thomas
+## Last update Sat Nov 26 12:15:03 2016 Cédric Thomas
 ##
 
 SRC	=	main.c				\
-		rotate.c			\
-		swap_push.c			\
+		listb.c				\
+		lista.c				\
 		sort.c				\
+		insert_to_lb.c			\
+		init_lb.c			\
 		misc/my_strcat.c		\
 		module/module_list.c		\
 		module/module_pushswap.c	

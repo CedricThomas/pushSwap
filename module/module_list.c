@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Mon Nov 21 12:15:25 2016 Cédric Thomas
-** Last update Wed Nov 23 23:01:58 2016 Cédric Thomas
+** Last update Sat Nov 26 23:01:54 2016 Cédric Thomas
 */
 #include <stdlib.h>
 #include "my.h"
@@ -19,8 +19,8 @@ int		my_put_list(t_number **ll, int nb)
   if ((elem = malloc(sizeof(*elem))) == NULL)
     return (0);
   elem->data = nb;
-  elem->bool = 0;
-  elem->tag = 0;
+  elem->processed = 0;
+  elem->is_first = 0;
   if (*ll == NULL)
     {
       elem->next = elem;
