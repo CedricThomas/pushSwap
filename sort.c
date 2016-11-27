@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Mon Nov 21 16:38:49 2016 Cédric Thomas
-** Last update Sun Nov 27 13:22:19 2016 Cédric Thomas
+** Last update Sun Nov 27 15:01:13 2016 Cédric Thomas
 */
 #include <unistd.h>
 #include <stdlib.h>
@@ -30,7 +30,7 @@ void		update_buff(t_buffer *bf, char *mod, int forced)
       bf->write_pos += 1;
       i += 1;
     }
-  bf->size_disp += my_strlen(mod);
+  bf->size_disp += i;
 }
 
 static int	init_buffer(t_number **lla, t_buffer *buffer)
